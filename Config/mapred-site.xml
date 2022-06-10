@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+<property>
+	<name>mapred.job.tracker</name> 
+	<value>m1:54311</value>
+	<description>El host y puerto en que se ejecuta el rastreador de trabajo MapReduce. Si es "local", los trabajos se ejecutan en el proceso como una sola tarea Map Reduce.
+</description>
+</property>
+<property>
+	<name>mapreduce.jobhistory.webapp.address</name>
+	<value>m1:19888</value> 
+</property>
+<property>
+  <name>mapreduce.framework.name</name>
+  <value>yarn</value>
+</property>
+<property>
+  <name>mapreduce.map.memory.mb</name>
+  <value>1024</value>
+</property>
+<property>
+  <name>mapreduce.map.java.opts</name>
+  <value>-Xmx776m</value>
+</property>
+<property>
+  <name>mapreduce.map.memory.mb</name>
+  <value>1024</value>
+</property>
+<property>
+  <name>mapreduce.map.java.opts</name>
+  <value>-Xmx776m</value>
+</property>
+</configuration>
