@@ -1,6 +1,8 @@
 package mx.cic;
 /**
- * Imortar las bibliotecas necesarias ???
+ * Fernanda Borjas
+ * Importar las bibliotecas necesarias
+ * import org.apache.hadoop.mapreduce.lib.input.FileOutputFormat;
  */
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -10,7 +12,6 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.FileOutputFormat;
 
 /**
  * Importar clases necesarias
