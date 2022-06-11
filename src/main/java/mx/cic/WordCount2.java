@@ -1,31 +1,23 @@
-package ???
+package mx.cic;
 /**
- * Todo
  * Imortar las bibliotecas necesarias ???
  */
-
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.FileOutputFormat;
 
 /**
- * Todo
  * Importar clases necesarias
  */
 
-        ???
-        ???
-        ???
-        ??????
+import java.io.IOException;
+import java.util.StringTokenizer;
 
 /**
  * Todo
@@ -34,9 +26,9 @@ package ???
  * Documentar el prgrama
  */
 public class WordCount2{
-    public static class Clase1 extends Mapper<Object, Text, Text, IntWritable>{
+    public static class Map extends Mapper<Object, Text, Text, IntWritable>{
 
-        static enum Clase2 { INPUT_WORDS }
+        static enum Reduce { INPUT_WORDS }
 
         private final static IntWritable uno = new IntWritable(1);
         private Text palabra = new Text();
@@ -87,14 +79,14 @@ public class WordCount2{
             while (itr.hasMoreTokens()) {
                 palabra.set(itr.nextToken());
                 context.write(palabra, uno);
-                Counter counter = context.getCounter(Clase2.class.getName(),
-                        Clase2.INPUT_WORDS.toString());
+                Counter counter = context.getCounter(Reduce.class.getName(),
+                        Reduce.INPUT_WORDS.toString());
                 counter.increment(1);
             }
         }
     }
 
-    public static class Clase3
+    public static class Reduce
             extends Reducer<Text,IntWritable,Text,IntWritable> {
         private IntWritable result = new IntWritable();
 
@@ -120,9 +112,9 @@ public class WordCount2{
         }
         Job job = Job.getInstance(conf, "palabra count");
         job.setJarByClass(WordCount2.class);
-        job.setMapperClass(Clase1.class);
-        job.setCombinerClass(Clase3.class);
-        job.setReducerClass(Clase3.class);
+        job.setMapperClass(Map.class);
+        job.setCombinerClass(Reduce.class);
+        job.setReducerClass(Reduce.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
@@ -140,5 +132,3 @@ public class WordCount2{
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
-
-
