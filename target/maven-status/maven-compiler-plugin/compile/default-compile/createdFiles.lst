@@ -1,0 +1,10 @@
+mx\cic\SideJoin.class
+mx\cic\SideJoin$MapA.class
+mx\cic\TopTenWords$Reduce.class
+mx\cic\TopTenWords.class
+mx\cic\wordcount$Reduce.class
+mx\cic\SideJoin$Reduce.class
+mx\cic\SideJoin$MapB.class
+mx\cic\wordcount$Map.class
+mx\cic\TopTenWords$Map.class
+mx\cic\wordcount.class

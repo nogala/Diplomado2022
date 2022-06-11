@@ -1,35 +1,33 @@
-package mx.???;
+package mx.cic;
 /**
- * Todo
  * Importar las bibliotecas necesarias
  */
 
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 
 /**
- * Todo
  * Importar las bibliotecas necesarias.
  */
-import java.io.???;
-import java.util.???;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
- * Todo
  * Clase1, Clase2
  * Nombrar los metodos
  * Metodo1, Metodo2, etc.
  * Documentar el programa
  */
 public class SideJoin {
-    public static class Clase1 extends Mapper<Object, Text, Text, Text> {
+    public static class MapA extends Mapper<Object, Text, Text, Text> {
         private Text llaveforanea = new Text();
         private Text valorforaneo = new Text();
 
@@ -44,10 +42,7 @@ public class SideJoin {
         }
     }
 
-    /**
-     * TODO
-     */
-    public static class Clase2 extends Mapper<Object, Text, Text, Text> {
+    public static class MapB extends Mapper<Object, Text, Text, Text> {
         private Text llaveforanea = new Text();
         private Text valorforaneo = new Text();
 
@@ -62,11 +57,8 @@ public class SideJoin {
         }
     }
 
-    /**
-     * TODO
-     */
 
-    public static class Clase3 extends Reducer<Text, Text, Text, Text> {
+    public static class Reduce extends Reducer<Text, Text, Text, Text> {
         private static final Text EMPTY_TEXT = new Text("");
         private Text tmp = new Text();
         private ArrayList<Text> listA = new ArrayList<Text>();
@@ -74,17 +66,15 @@ public class SideJoin {
         private String joinType = null;
 
         /**
-         * TODO
          * @param context
          */
 
-        public void metodo1(Context context) {
+        public void executeJoinLogic(Context context) {
             // set up join configuration based on input
             joinType = context.getConfiguration().get("join.type");
         }
 
         /**
-         * TODO
          * @param key
          * @param values
          * @param context
@@ -92,7 +82,7 @@ public class SideJoin {
          * @throws InterruptedException
          */
 
-        public void metodo2(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+        public void reduceB(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             // Clear the lists
             listA.clear();
             listB.clear();
@@ -116,7 +106,7 @@ public class SideJoin {
          * @throws InterruptedException
          */
 
-        private void metodo3(Context context) throws IOException, InterruptedException {
+        private void reduceC(Context context) throws IOException, InterruptedException {
             if (joinType.equalsIgnoreCase("inner")) {
                 if (!listA.isEmpty() && !listB.isEmpty()) {
                     for (Text A : listA) {
@@ -169,7 +159,6 @@ public class SideJoin {
     }
 
     /**
-     * TODO
      * @param args
      * @throws Exception
      */
@@ -182,11 +171,11 @@ public class SideJoin {
         }
         Job job = Job.getInstance(conf, "Reduce Side Join");
         job.setJarByClass(SideJoin.class);
-        job.setReducerClass(Clase3.class);
+        job.setReducerClass(Reduce.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
-        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, Clase1.class);
-        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, Clase2.class);
+        MultipleInputs.addInputPath(job, new Path(args[0]), TextInputFormat.class, MapA.class);
+        MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, MapB.class);
         job.getConfiguration().set("join.type", args[2]);
         FileOutputFormat.setOutputPath(job, new Path(args[3]));
         System.exit(job.waitForCompletion(true) ? 0 : 1);
