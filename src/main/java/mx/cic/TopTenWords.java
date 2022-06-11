@@ -41,7 +41,7 @@ public class TopTenWords {
 
 
         @Override
-        protected void setup(Context context) throws IOException, InterruptedException {
+        protected void cleanup(Context context) throws IOException, InterruptedException {
             for (Map.Entry<Integer, String> entry : contadorpalabraMap.entrySet()) {
                 context.write(new Text(entry.getValue()), new IntWritable(entry.getKey()));
             }
