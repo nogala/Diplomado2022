@@ -3,9 +3,6 @@ package mx.cic;
 /**
  * Fernanda Borjas
  * Importar las bibliotecas requeridas.
- * import org.apache.hadoop.mapreduce.TreeMap;
- * import org.apache.hadoop.mapreduce.Combiner;
- * import org.apache.hadoop.mapreduce.lib.input.FileOutputFormat;
  */
 
 import org.apache.hadoop.conf.Configuration;
@@ -16,13 +13,14 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * Todo
  * Importar las bibliotecas requeridas.
  */
 import java.io.IOException;
-import java.util.StringTokenizer;
+import j
 
 /**
  * Todo
@@ -50,8 +48,8 @@ public class TopTenWords {
         }
 
         @Override
-        protected void combine(Context context) throws IOException, InterruptedException {
-            for (Map.Entry<Integer, String> entry : contadorpalabraMap.entrySet()) {
+        protected void cleanup(Context context) throws IOException, InterruptedException {
+            for (map.Entry<Integer, String> entry : contadorpalabraMap.entrySet()) {
                 context.write(new Text(entry.getValue()), new IntWritable(entry.getKey()));
             }
         }
