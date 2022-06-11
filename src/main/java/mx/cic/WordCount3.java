@@ -1,25 +1,20 @@
-package ???;
-/**
- * Todo
- * Importar las bibliotecas correspondientes
- */
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-/**
- * Todo
- * Importas las bibliotecas correspondientes
- */
-???;???;
+package mx.cic;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
+import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+
+import java.io.IOException;
+import java.util.StringTokenizer;
 
 /**
  * Todo
@@ -41,7 +36,7 @@ public class WordCount3 {
          * @param llave
          * @param valor
          * @param contexto
-         * @throws IOException
+         * @throws java.io.IOException
          * @throws InterruptedException
          */
 

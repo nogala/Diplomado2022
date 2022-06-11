@@ -1,25 +1,17 @@
-package mx.???;
-/**
- * Todo
- * Importar las bibliotecas necesarias
- */
+package mx.cic;
 
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-/**
- * Todo
- * Importar las bibliotecas necesarias.
- */
-import java.io.???;
-import java.util.???;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Todo
@@ -116,7 +108,7 @@ public class SideJoin {
          * @throws InterruptedException
          */
 
-        private void metodo3(Context context) throws IOException, InterruptedException {
+        private void executeJoinLogic(Context context) throws IOException, InterruptedException {
             if (joinType.equalsIgnoreCase("inner")) {
                 if (!listA.isEmpty() && !listB.isEmpty()) {
                     for (Text A : listA) {

@@ -1,29 +1,22 @@
-package ???;
+package mx.cic;
 
-/**
- * Todo
- * Importar las bibliotecas necesarias.
- */
 
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
-???;
+import org.apache.hadoop.conf.Configurable;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.NullWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Partitioner;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-/**
- * Todo
- * Importar las bibliotecas correspondientes.
- */ ???;
+import java.io.IOException;
 
-    public class YOJPartitioner {
+public class YOJPartitioner {
 
         /**
          * Todo
@@ -40,7 +33,7 @@ package ???;
              * @param key
              * @param value
              * @param context
-             * @throws IOException
+             * @throws java.io.IOException
              * @throws InterruptedException
              */
             public void metodo1(Object key, Text value, Mapper<Object, Text, IntWritable, Text>.Context context)
