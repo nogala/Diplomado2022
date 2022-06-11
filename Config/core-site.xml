@@ -3,11 +3,11 @@
 <configuration> 
 <property>
 	<name>fs.defaultFS</name>
-	<value>hdfs://m1:54310</value> 
+	<value>hdfs://master:54310</value>
 </property>
 <property>
 	<name>fs.default.name</name> 
-	<value>hdfs://m1:54310</value>
+	<value>hdfs://master:54310</value>
 </property> 
 <property>
 	<name>hadoop.http.cross-origin.enabled</name> 
@@ -26,7 +26,7 @@
 	<value>X-Requested-With,Content-Type,Accept,Origin</value>
 </property>
 <property>
-	<name>hadoop.http.cross-origin.max-age	</name> 
+	<name>hadoop.http.cross-origin.max-age</name>
 	<value>1800</value>
 </property>
 </configuration>
