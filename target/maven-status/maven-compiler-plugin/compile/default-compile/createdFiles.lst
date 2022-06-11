@@ -1,0 +1,10 @@
+mx/cic/WordCount2$Reduce.class
+mx/cic/TopTenWords$Reduce.class
+mx/cic/wordcount$Reduce.class
+mx/cic/wordcount.class
+mx/cic/wordcount$Map.class
+mx/cic/TopTenWords$MapCount.class
+mx/cic/TopTenWords.class
+mx/cic/WordCount2$Map.class
+mx/cic/WordCount2.class
+mx/cic/WordCount2$Map$InputW.class

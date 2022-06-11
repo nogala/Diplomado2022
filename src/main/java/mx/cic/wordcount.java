@@ -1,20 +1,22 @@
 package mx.cic;
 
 /**
- * TODO
+ * Carlos Arturo Medina García
  * Importar bibliotecas necesarias ???
  */
 
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import java.io.IOException;
 import java.util.StringTokenizer;
 /**
  * TODO
@@ -31,7 +33,7 @@ import java.util.StringTokenizer;
  */
 public class wordcount {
 
-    public static class Clase1 extends Mapper<Object, Text, Text, IntWritable>{
+    public static class Map extends Mapper<Object, Text, Text, IntWritable> {
         /**
          * TODO
          */
@@ -39,14 +41,14 @@ public class wordcount {
         private Text palabra = new Text();
 
         /**
-         * TODO
+         *
          * @param llave
          * @param valor
          * @param cubeta
          * @throws IOException
          * @throws InterruptedException
          */
-        public void Metodo1(Object llave, Text valor, Context cubeta) {
+        public void map (Object llave, Text valor, Context cubeta) throws IOException, InterruptedException {
             StringTokenizer buscador = new StringTokenizer(valor.toString());
             while (buscador.hasMoreElements()){
                 palabra.set(buscador.nextToken());
@@ -55,7 +57,7 @@ public class wordcount {
         }
     }
 
-    public static class Clase2 extends Reducer<Text , IntWritable , Text, IntWritable> {
+    public static class Reduce extends Reducer<Text , IntWritable , Text, IntWritable> {
         /**
          * TODO
          */
@@ -66,7 +68,7 @@ public class wordcount {
          * @param unos
          * @param cubeta
          */
-        public void Metodo1(Text llaves, Iterable<IntWritable> unos, Context cubeta) {
+        public void reduce (Text llaves, Iterable<IntWritable> unos, Context cubeta) throws IOException, InterruptedException {
             int suma = 0;
             for (IntWritable valor:
                     unos) {
@@ -84,7 +86,7 @@ public class wordcount {
      * @throws ClassNotFoundException
      * @throws InterruptedException
      */
-    public static void main(String[] parametros){
+    public static void main(String[] parametros) throws IOException, InterruptedException, ClassNotFoundException {
         if (parametros.length == 0){
             System.err.println("Usage: ... WordCount_1 <input source> <output dir>");
             System.exit(1);
@@ -95,16 +97,16 @@ public class wordcount {
              * Comletar el codigo (??????)
              */
             Configuration configura = new Configuration();
-            Job ?????? = Job.getInstance(configura, "Contador de Palabras");
-            ??????.setJarByClass(wordcount.class);
-            ??????.setMapperClass(Clase1.class);
-            ??????.setCombinerClass(Clase2.class);
-            ??????.setReducerClass(Clase2.class);
-            ??????.setOutputKeyClass(Text.class);
-            ??????.setOutputValueClass(IntWritable.class);
-            FileInputFormat.addInputPath(??????, new Path(parametros[0]));
-            FileOutputFormat.setOutputPath(??????, new Path(parametros[1]));
-            System.exit(??????.waitForCompletion(true) ? 0 : 1);
+            Job trabajo = Job.getInstance(configura, "Contador de Palabras");
+            trabajo.setJarByClass(wordcount.class);
+            trabajo.setMapperClass(Map.class);
+            trabajo.setCombinerClass(Reduce.class);
+            trabajo.setReducerClass(Reduce.class);
+            trabajo.setOutputKeyClass(Text.class);
+            trabajo.setOutputValueClass(IntWritable.class);
+            FileInputFormat.addInputPath(trabajo, new Path(parametros[0]));
+            FileOutputFormat.setOutputPath(trabajo, new Path(parametros[1]));
+            System.exit(trabajo.waitForCompletion(true) ? 0 : 1);
 
         }
     }

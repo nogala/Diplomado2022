@@ -1,27 +1,29 @@
-package ???;
+package mx.cic;
+
+/**
+ * Carlos Arturo Medina García
+ * Importar las bibliotecas requeridas.
+ */
+
 
 /**
  * Todo
  * Importar las bibliotecas requeridas.
  */
 
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-/**
- * Todo
- * Importar las bibliotecas requeridas.
- */
-import java.io.???;
-import java.util.???;
-import java.util.???;
+import java.io.IOException;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Todo
@@ -33,10 +35,10 @@ import java.util.???;
  */
 public class TopTenWords {
 
-    public static class Clase1 extends Mapper<Object, Text, Text, IntWritable>{
+    public static class MapCount extends Mapper<Object, Text, Text, IntWritable> {
         private TreeMap<Integer, String> contadorpalabraMap = new TreeMap<Integer, String>();
 
-        public void metodo1(Object llave, Text valor, Mapper<Object, Text, Text, IntWritable>.Context contexto)
+        public void map(Object llave, Text valor, Mapper<Object, Text, Text, IntWritable>.Context contexto)
                 throws IOException, InterruptedException{
 
             String[] palabras = valor.toString().split("[\t]");
@@ -49,7 +51,7 @@ public class TopTenWords {
         }
 
         @Override
-        protected void metodo2(Context context) throws IOException, InterruptedException {
+        protected void cleanup(Context context) throws IOException, InterruptedException {
             for (Map.Entry<Integer, String> entry : contadorpalabraMap.entrySet()) {
                 context.write(new Text(entry.getValue()), new IntWritable(entry.getKey()));
             }
@@ -57,7 +59,7 @@ public class TopTenWords {
 
     }
 
-    public static class clase2 extends Reducer<Text, IntWritable, Text, IntWritable>{
+    public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
         private TreeMap<IntWritable, Text> contadorpalabraMap = new TreeMap<IntWritable, Text>();
 
         public void reduce(Text llave, Iterable<IntWritable> valores,
@@ -86,10 +88,10 @@ public class TopTenWords {
             System.exit(2);
         }
         Job job = Job.getInstance(conf, "Top Ten Word By Occurence Counter");
-        job.setJarByClass(???.class);
-        job.setMapperClass(???.class);
-        job.setCombinerClass(???.class);
-        job.setReducerClass(???.class);
+        job.setJarByClass(TopTenWords.class);
+        job.setMapperClass(MapCount.class);
+        job.setCombinerClass(Reduce.class);
+        job.setReducerClass(Reduce.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(1);
