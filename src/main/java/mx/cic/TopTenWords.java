@@ -1,27 +1,46 @@
-package ???;
+package mx.cic;
+
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.StringTokenizer;
+import java.util.TreeMap;
+
+/**
+ * Todo
+ * Importar las bibliotecas correspondientes
+ */
+
+/**
+ * Todo
+ * Importas las bibliotecas correspondientes
+ */
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
+import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
+//import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+//import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+//import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+
 
 /**
  * Todo
  * Importar las bibliotecas requeridas.
  */
-
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-
-/**
- * Todo
- * Importar las bibliotecas requeridas.
- */
-import java.io.???;
-import java.util.???;
-import java.util.???;
+//import java.io.???;
+//import java.util.???;
+//import java.util.???;
 
 /**
  * Todo
@@ -48,7 +67,7 @@ public class TopTenWords {
             }
         }
 
-        @Override
+        //@Override
         protected void metodo2(Context context) throws IOException, InterruptedException {
             for (Map.Entry<Integer, String> entry : contadorpalabraMap.entrySet()) {
                 context.write(new Text(entry.getValue()), new IntWritable(entry.getKey()));
@@ -86,10 +105,10 @@ public class TopTenWords {
             System.exit(2);
         }
         Job job = Job.getInstance(conf, "Top Ten Word By Occurence Counter");
-        job.setJarByClass(???.class);
-        job.setMapperClass(???.class);
-        job.setCombinerClass(???.class);
-        job.setReducerClass(???.class);
+        job.setJarByClass(Job.class);
+        job.setMapperClass(Mapper.class);
+        job.setCombinerClass(Reducer.class);
+        job.setReducerClass(Reducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(1);
