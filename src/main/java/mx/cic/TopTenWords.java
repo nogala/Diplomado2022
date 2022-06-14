@@ -3,7 +3,6 @@ package mx.cic;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 /**
@@ -26,12 +25,9 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
-import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 //import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 //import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 //import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
-import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 
 /**
@@ -105,10 +101,10 @@ public class TopTenWords {
             System.exit(2);
         }
         Job job = Job.getInstance(conf, "Top Ten Word By Occurence Counter");
-        job.setJarByClass(Job.class);
-        job.setMapperClass(Mapper.class);
-        job.setCombinerClass(Reducer.class);
-        job.setReducerClass(Reducer.class);
+        job.setJarByClass(TopTenWords.class);
+        job.setMapperClass(Clase1.class);
+        job.setCombinerClass(clase2.class);
+        job.setReducerClass(clase2.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(1);
