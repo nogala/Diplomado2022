@@ -1,7 +1,7 @@
 package mx.cic;
 
 /**
- * Todo
+ * Luis Hermenegildo
  * Importar las bibliotecas requeridas.
  */
 
@@ -92,9 +92,9 @@ public class TopTenWords {
         }
         Job job = Job.getInstance(conf, "Top Ten Word By Occurence Counter");
         job.setJarByClass(TopTenWords.class);
-        job.setMapperClass(claseMap.class);
-        job.setCombinerClass(claseReduce.class);
-        job.setReducerClass(claseReduce.class);
+        job.setMapperClass(TopTenWords.claseMap.class);
+        job.setCombinerClass(TopTenWords.claseReduce.class);
+        job.setReducerClass(TopTenWords.claseReduce.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         job.setNumReduceTasks(1);

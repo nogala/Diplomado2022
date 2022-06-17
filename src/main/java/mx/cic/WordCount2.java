@@ -19,7 +19,7 @@ import org.apache.hadoop.util.StringUtils;
 
 
 /**
- * Todo
+ * Luis Hermenegildo
  * Importar clases necesarias
  */
 
