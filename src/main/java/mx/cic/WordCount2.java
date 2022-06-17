@@ -1,31 +1,39 @@
-package ???
+package mx.cic;
+
+/**
+ * Alumno Abimael Dominguez Pérez
+ * Big Data Módulo 3 - Práctica 2
+ */
+
 /**
  * Todo
  * Imortar las bibliotecas necesarias ???
  */
 
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
-        ???
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Counter;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.util.GenericOptionsParser;
+import org.apache.hadoop.util.StringUtils;
+
 
 /**
  * Todo
  * Importar clases necesarias
  */
 
-        ???
-        ???
-        ???
-        ??????
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URI;
+import java.util.*;
 
 /**
  * Todo
@@ -33,6 +41,7 @@ package ???
  * Clase1, Clase2
  * Documentar el prgrama
  */
+
 public class WordCount2{
     public static class Clase1 extends Mapper<Object, Text, Text, IntWritable>{
 
@@ -140,5 +149,3 @@ public class WordCount2{
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
-
-
