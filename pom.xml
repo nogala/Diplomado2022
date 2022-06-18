@@ -5,7 +5,7 @@
   <artifactId>programas_hadoop_mod_3_practica_2_abimael</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
-  <name>MapReduce</name>
+  <name>Abimael</name>
   <url>http://maven.apache.org</url>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
