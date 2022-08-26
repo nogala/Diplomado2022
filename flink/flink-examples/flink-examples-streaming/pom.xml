@@ -21,6 +21,10 @@ under the License.
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+	<properties>
+		<maven.compiler.source>18</maven.compiler.source>
+		<maven.compiler.target>18</maven.compiler.target>
+	</properties>
 
 	<parent>
 		<groupId>org.apache.flink</groupId>
@@ -38,11 +42,19 @@ under the License.
 
 		<!-- core dependencies -->
 
-		<dependency>
+		<!--dependency>
 			<groupId>org.apache.flink</groupId>
 			<artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
 			<version>${project.version}</version>
+		</dependency-->
+		<!-- https://mvnrepository.com/artifact/org.apache.flink/flink-streaming-java -->
+		<dependency>
+			<groupId>org.apache.flink</groupId>
+			<artifactId>flink-streaming-java_2.12</artifactId>
+			<version>1.14.5</version>
+			<scope>provided</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.flink</groupId>
