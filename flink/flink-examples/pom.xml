@@ -32,8 +32,9 @@ under the License.
 		<groupId>org.apache.flink</groupId>
 		<artifactId>flink-parent_2.11</artifactId>
 		<version>0.10.2</version>
-
 	</parent>
+	<!-- https://mvnrepository.com/artifact/org.apache.flink/flink-parent -->
+
 
 	<artifactId>flink-examples</artifactId>
 	<name>flink-examples</name>
@@ -41,8 +42,8 @@ under the License.
 
 	<modules>
 		<module>flink-examples-batch</module>
-		<!--module>flink-examples-streaming</module-->
-		<!--module>flink-examples-table</module-->
+		<module>flink-examples-streaming</module>
+		<module>flink-examples-table</module>
 	</modules>
 
 	<dependencies>
@@ -65,11 +66,18 @@ under the License.
 		<!-- Add a logging Framework, to make the examples produce -->
 		<!--             logs when executing in the IDE            -->
 
-		<dependency>
+		<!--dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>compile</scope>
+		</dependency-->
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.36</version>
 		</dependency>
+
 
 		<!--dependency>
 			<groupId>log4j</groupId>
