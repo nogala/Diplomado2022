@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   name: spark-worker
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       component: spark-worker
