@@ -1,25 +1,31 @@
-package mx.???;
+package mx.cic;
+
+
 /**
  * Todo
  * Importar las bibliotecas necesarias
  */
 
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
-import org.apache.hadoop.???;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /**
  * Todo
  * Importar las bibliotecas necesarias.
  */
-import java.io.???;
-import java.util.???;
 
 /**
  * Todo
@@ -106,7 +112,7 @@ public class SideJoin {
                 }
             }
             // Execute joining logic based on its type
-            executeJoinLogic(context);
+            //executeJoinLogic(context);
         }
 
         /**
