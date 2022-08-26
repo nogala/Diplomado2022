@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spark-master
-          image: nogala/spark:3.3.0
+          image: norbertog/spark-demo:3.3.0
           command: ["/spark-master"]
           ports:
             - containerPort: 7077
