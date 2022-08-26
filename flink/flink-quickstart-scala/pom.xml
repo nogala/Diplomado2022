@@ -16,22 +16,24 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-  
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion/>
 
-	<parent>
-		<groupId>org.apache.flink</groupId>
-		<artifactId>flink-quickstart</artifactId>
-		<version>1.8-SNAPSHOT</version>
-		<relativePath>..</relativePath>
-	</parent>
 
 	<artifactId>flink-quickstart-scala</artifactId>
-	<packaging>maven-archetype</packaging>
+	<name>flink-quickstart-scala</name>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<target.java.version>1.8</target.java.version>
+		<maven.compiler.source>${target.java.version}</maven.compiler.source>
+		<maven.compiler.target>${target.java.version}</maven.compiler.target>
+		<flink.version>1.14.5</flink.version>
+		<scala.binary.version>2.12</scala.binary.version>
+		<log4j.version>2.17.1</log4j.version>
+	</properties>
+
+
 
 </project>
